@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
 import classNames from 'classnames';
-import { declareBoxes, activateBox } from './duck';
+import { declareBoxes, activateBox, getActiveID } from './duck';
 import snippets from './snippets';
 
 export const mapState = state => ({
-  boxes: state.boxModel
+  boxes: state.boxModel,
+  activeId: getActiveID(state)
 });
 
 export const mapDispatch = dispatch => ({
@@ -43,13 +44,11 @@ export class ReduxModel extends Component {
           ))}
         </div>
         <div className="code">
-          {this.props.boxes.map(box => box.active && (
-            <div key={box.id}>
-              <Highlight className='js'>
-                {snippets[box.id].toString()}
-              </Highlight>
-            </div>
-          ))}
+          {this.props.activeId && (
+            <Highlight className='js'>
+              {snippets[this.props.activeId].toString()}
+            </Highlight>
+          )}
         </div>
       </div>
     );
