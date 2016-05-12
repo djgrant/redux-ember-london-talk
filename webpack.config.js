@@ -4,7 +4,11 @@ module.exports = Object.assign(
   getConfig({
     in: 'src/client.js',
     out: 'public',
-    clearBeforeBuild: true
+    html: false,
+    clearBeforeBuild: true,
+    devServer: {
+      contentBase: __dirname
+    }
   }),
 
   {

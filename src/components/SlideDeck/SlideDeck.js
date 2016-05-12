@@ -1,4 +1,5 @@
 import './slideDeck.styl';
+import './theme.styl';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { navigateLeft, navigateRight } from './duck';
@@ -53,9 +54,11 @@ export class SlideDeck extends Component {
         {this.props.slides.map((slide, index) => (
           <div
             className="slide"
-            key={slide}
+            key={index}
             hidden={this.props.activeSlide !== index}>
-            {slide}
+            <div className="slide-content">
+              {slide}
+            </div>
           </div>
         ))}
       </div>
